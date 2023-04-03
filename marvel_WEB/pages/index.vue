@@ -9,27 +9,33 @@
             "
           >
           </v-img>
-
-          <p>Nombre del personaje= {{ personaje.name }}</p>
-          <p>Descripción= {{ personaje.description }}</p>
-          <p>Comics= {{ personaje.comics.available }} </p>
-          <p>Events= {{ personaje.events.available }}</p>
-          <p>Stories= {{ personaje.stories.available }}</p>
-          <p>Series= {{ personaje.series.available }}</p>
-
-          <v-btn @click="getId(personaje.id); sele=personaje.id"> ver </v-btn>
+          
+            <p>Nombre del personaje= {{ personaje.name }}</p>
+            <p>Descripción= {{ personaje.description }}</p>
+            <div class="d-flex">
+            <p>Comics= {{ personaje.comics.available }}  </p>
+            <v-divider vertical>  </v-divider>
+            <p >Events= {{ personaje.events.available }}  </p>
+            <p>Stories= {{ personaje.stories.available }}  </p>
+            <p>Series= {{ personaje.series.available }}  </p>
+          </div>
+          <v-divider></v-divider>
+          <h3>
+            Nombre de las 3 primeras series:
+            <br />
+          </h3>
+          <br />
+          <p v-for="item in personaje.series.items.slice(0, 3)" :key="item">
+            {{ item.name }}
+          </p>
 
           <div v-for="serie in series" :key="serie.id">
-
-          <v-expand-transition> 
-            <div v-show="personaje.id===sele">
-              <v-card-text>
-              </v-card-text>
-            </div>
-          </v-expand-transition>
-
+            <v-expand-transition>
+              <div v-show="personaje.id === sele">
+                <v-card-text> </v-card-text>
+              </div>
+            </v-expand-transition>
           </div>
-
         </v-card>
       </v-container>
     </div>
@@ -45,15 +51,15 @@ export default {
   data() {
     return {
       personajes: [],
-      id: " ",
+      id: ' ',
       sele: null,
-      series:[],
+      series: [],
     }
   },
 
-  methods:{
-    getId(id){
-      this.$id=id
+  methods: {
+    getId(id) {
+      this.$id = id
     },
   },
 
