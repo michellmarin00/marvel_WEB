@@ -1,9 +1,30 @@
 <template>
-  <div>
-    <div v-for="personaje in personajes" :key="personaje.id">
-      <p>{{ personaje.name }}</p>
+  <v-app>
+    <div>
+      <v-container v-for="personaje in personajes" :key="personaje.id">
+        <v-card>
+          <v-img
+            :src="
+              personaje.thumbnail.path + '.' + personaje.thumbnail.extension
+            "
+          >
+          </v-img>
+
+          <p>{{ personaje.name }}</p>
+          <p>{{ personaje.description }}</p>
+          <p>{{ personaje.comics.available }}</p>
+
+          <v-btn @click="id = personaje.id"> ver </v-btn>
+          <v-expand-transition> 
+            <div v-show="personaje.id===sele">
+              <v-card-text>
+              </v-card-text>
+            </div>
+          </v-expand-transition>
+        </v-card>
+      </v-container>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -15,14 +36,25 @@ export default {
   data() {
     return {
       personajes: [],
+      id: '',
+      sele: null,
+      series:[],
     }
   },
   created() {
-    const url = 'http://gateway.marvel.com/v1/public/characters?ts=8&apikey=59b68dc533d0551b400ee83dec5fd034&hash=0bc5896cc41eb4f0e51851bdbf8f2c2e'
-
+    const url =
+      'http://gateway.marvel.com/v1/public/characters?ts=8&apikey=59b68dc533d0551b400ee83dec5fd034&hash=0bc5896cc41eb4f0e51851bdbf8f2c2e'
+    let serieUrl =
+      'http://gateway.marvel.com/v1/public/characters/' +
+      `${this.id}` +
+      '/series?ts=8&apikey=59b68dc533d0551b400ee83dec5fd034&hash=0bc5896cc41eb4f0e51851bdbf8f2c2e'
     axios
       .get(url)
       .then((response) => (this.personajes = response.data.data.results))
+
+    axios
+      .get(url)
+      .then((response) => (this.series = response.data.data.results))
   },
 }
 </script>
