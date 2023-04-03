@@ -9,25 +9,26 @@
             "
           >
           </v-img>
-          
-            <p>Nombre del personaje= {{ personaje.name }}</p>
-            <p>Descripción= {{ personaje.description }}</p>
-            <div class="d-flex">
-            <p>Comics= {{ personaje.comics.available }}  </p>
-            <v-divider vertical>  </v-divider>
-            <p >Events= {{ personaje.events.available }}  </p>
-            <p>Stories= {{ personaje.stories.available }}  </p>
-            <p>Series= {{ personaje.series.available }}  </p>
-          </div>
+
+          <v-card-text>Nombre del personaje= {{ personaje.name }}</v-card-text>
+          <v-card-text>Descripción= {{ personaje.description }}</v-card-text>
+          <v-row class="d-flex" justify="center">
+            <v-card-text>Comics= {{ personaje.comics.available }}</v-card-text>
+            <v-card-text >Events= {{ personaje.events.available }}</v-card-text>
+            <v-card-text >Stories= {{ personaje.stories.available }}</v-card-text>
+            <v-card-text>Series= {{ personaje.series.available }}</v-card-text>
+          </v-row>
+
           <v-divider></v-divider>
-          <h3>
+          <v-card-subtitle>
             Nombre de las 3 primeras series:
             <br />
-          </h3>
+          </v-card-subtitle>
           <br />
-          <p v-for="item in personaje.series.items.slice(0, 3)" :key="item">
+
+          <v-card-text v-for="item in personaje.series.items.slice(0, 3)" :key="item">
             {{ item.name }}
-          </p>
+          </v-card-text>
 
           <div v-for="serie in series" :key="serie.id">
             <v-expand-transition>
