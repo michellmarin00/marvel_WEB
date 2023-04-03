@@ -10,12 +10,12 @@
           >
           </v-img>
 
-          <p>nombre {{ personaje.name }}</p>
-          <p>{{ personaje.description }}</p>
-          <p> comics {{ personaje.comics.available }} </p>
-          <p>events {{ personaje.events.available }}</p>
-          <p>stories {{ personaje.stories.available }}</p>
-          <p>series {{ personaje.series.available }}</p>
+          <p>Nombre del personaje= {{ personaje.name }}</p>
+          <p>Descripción= {{ personaje.description }}</p>
+          <p>Comics= {{ personaje.comics.available }} </p>
+          <p>Events= {{ personaje.events.available }}</p>
+          <p>Stories= {{ personaje.stories.available }}</p>
+          <p>Series= {{ personaje.series.available }}</p>
 
           <v-btn @click="getId(personaje.id); sele=personaje.id"> ver </v-btn>
 
